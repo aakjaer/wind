@@ -30,7 +30,7 @@ img {
 
   > li > a {
     display: block;
-    padding: 0.5em 0;
+    padding: 0.7em 0;
     color: $text-color;
     cursor: pointer;
   }
@@ -51,6 +51,7 @@ img {
       color: $brand-primary;
       font-size: 2.5rem;
       font-weight: normal;
+      line-height: 1em;
       letter-spacing: -.05em;
     }
   }
