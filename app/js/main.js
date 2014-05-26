@@ -88,10 +88,10 @@
             var listItem = '<li class="station station-' + stationID + '" >' +
                                 '<a data-toggle="collapse" data-target="#details-'+ stationID +'">' +
                                     '<div class="row">' +
-                                        '<div class="col-xs-6">' +
+                                        '<div class="col-xs-7">' +
                                             '<h3>' + stationName + '</h3>' +
                                         '</div>' +
-                                        '<div class="col-xs-6 text-right">' +
+                                        '<div class="col-xs-5 text-right">' +
                                             '<span class="speed"><b>0.0</b> m/s</span>' +
                                             '<div class="wind-direction fa fa-long-arrow-down">' +
 
