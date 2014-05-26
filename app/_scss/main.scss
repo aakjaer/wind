@@ -22,11 +22,11 @@ $gaugeArrowWidth:     $gaugeArrowHeight / 4;
 body {
 
   @media (min-width: $screen-sm-min) {
-    font-size: 150%;
+    font-size:  calc(#{$font-size-base} + 50%);
     }
 
     @media (min-width: $screen-md-min) {
-        font-size: calc(#{$font-size-base} + 100%);
+        font-size: calc(#{$font-size-base} + 200%);
     }
 }
 
@@ -50,7 +50,7 @@ img {
     // full width to make hover 100% of screen
     > li > a {
         display: block;
-        padding: 0.4em 1.4em 0.4em 1em;
+        padding: 0.3em 1.4em 0.3em 1em;
         color: $text-color;
         cursor: pointer;
 
@@ -61,7 +61,7 @@ img {
     }
 
     h3 {
-        line-height: 3.5rem;
+        line-height: 4rem;
         margin: 0;
         color: #fff;
         font-size: 1.2em;
@@ -72,13 +72,13 @@ img {
     .speed {
         display: inline-block;
         margin-right: 1.2em;
-        line-height: 3.5rem;
+        line-height: 4rem;
         
         b {
             color: $brand-primary;
-            font-size: 1.8em;
+            font-size: 1.5em;
             font-weight: normal;
-            line-height: inherit;
+            line-height: 4rem;
             letter-spacing: -.05em;
         }
     }
@@ -89,7 +89,7 @@ img {
         -webkit-transform-origin: center center;
         color: #fff;
         font-size: 1.5em;
-        @include transition(all 2s ease-out);
+        @include transition(all 1s ease-out);
     }
 
     // collapsable container
