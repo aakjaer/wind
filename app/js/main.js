@@ -100,13 +100,13 @@
                                     '</div>' +
                                 '</a>' +
                                 '<div id="details-' + stationID + '" class="station-details-container collapse">' +
-                                    '<div class="station-details">' +
-                                        '<i class="fa fa-clock-o"></i> <time class="station-timestamp"></time> - ' +
-                                        '<span class="station-temperature"></span> &deg;C' +
-                                    '</div>' +
                                     '<figure class="station-chart">' +
                                         '<img src="' + urlImage + stationID + '&param=wind" />' +
                                     '</figure>' +
+                                    '<div class="station-details text-center">' +
+                                        '<i class="fa fa-clock-o"></i> <time class="station-timestamp"></time> - ' +
+                                        '<span class="station-temperature"></span> &deg;C' +
+                                    '</div>' +
                                 '</div>' +
                             '</li>';
                 
@@ -143,7 +143,10 @@
             // fill the temperature
             $(listItem).find('.station-temperature').html(data.temperature);
 
-            var arrow = $(listItem).find('.direction');
+            // show list item
+            listItem.removeClass('hidden').addClass('in');
+
+            //var arrow = $(listItem).find('.direction');
         }
 
             // container     
@@ -158,6 +161,11 @@
                 { name: 'Drogden', id: '6183' },
                 { name: 'Kbh lufthavn', id: '6180' },
                 { name: 'Gniben', id: '6169' },
+                { name: 'Jægerspris', id: '56' },
+                { name: 'Nakkehoved Fyr', id: '6168' },
+                { name: 'Kraneled', id: '1350' },
+                { name: 'Vindebæk Kyst', id: '6147' },
+                { name: 'Langø', id: '6138' },
                 { name: 'Thorsminde', id: '6052' }
             ];
 

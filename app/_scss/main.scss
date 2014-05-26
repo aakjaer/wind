@@ -16,82 +16,114 @@ $fa-font-path:              "../fonts/fontawesome";
 // custom variables
 
 $gaugeDiameter:       2.5rem;
-$gaugeBorderWidth:      10px;
-$gaugeBorder:       $gaugeBorderWidth solid #efefef;
-$gaugeArrowHeight:      20px;
-$gaugeArrowWidth:       $gaugeArrowHeight / 4;
+$gaugeArrowHeight:    20px;
+$gaugeArrowWidth:     $gaugeArrowHeight / 4;
+
+body {
+
+  @media (min-width: $screen-sm-min) {
+    font-size: 150%;
+    }
+
+    @media (min-width: $screen-md-min) {
+        font-size: calc(#{$font-size-base} + 100%);
+    }
+}
 
 img {
-  @extend .img-responsive;
+    @extend .img-responsive;
 }
 
 
 .weather-stations {
 
-  > li > a {
-    display: block;
-    padding: 0.7em 0;
-    color: $text-color;
-    cursor: pointer;
-  }
+    // hide by default - show when data is loaded
+    > li {
+        @include opacity(0);
+        @include transition(all 1s ease);
 
-    
-  h3 {
-    margin: 0;
-    color: #fff;
-    line-height: 3rem;
-    font-size: 1.7rem;
-    text-transform: uppercase;
-  }
-
-  .speed {
-    display: inline-block;
-    margin-right: 20px;
-    
-    b {
-      color: $brand-primary;
-      font-size: 2.5rem;
-      font-weight: normal;
-      line-height: 3rem;
-      letter-spacing: -.05em;
+        &.in {
+            @include opacity(1);
+        }
     }
-  }
 
-  .wind-direction {
-    position: relative;
-    display: inline-block;
-      height: $gaugeDiameter;
-      width: $gaugeDiameter;
+    // full width to make hover 100% of screen
+    > li > a {
+        display: block;
+        padding: 0.7em $grid-gutter-width / 2;
+        color: $text-color;
+        cursor: pointer;
+
+        &:active,
+        &:hover {
+            background-color: lighten($body-bg, 3);
+        }
+    }
+
+    h3 {
+        line-height: 3.5rem;
+        margin: 0;
+        color: #fff;
+        font-size: 1.2em;
+        text-transform: uppercase;
+    }
+
+    .speed {
+        display: inline-block;
+        margin-right: 20px;
+        line-height: 3.5rem;
         
-    .wind-arrow {
-      display: block;
-      position: absolute;
-      top: calc(50% - #{$gaugeArrowHeight / 2});
-      left: calc(50% - #{$gaugeArrowWidth });
-      height: $gaugeArrowHeight;
-      -webkit-transform-origin: center center;
-      color: #fff;
-      font-size: 2rem;
-      @include transition(all .4s ease-in);
+        b {
+            color: $brand-primary;
+            font-size: 1.8em;
+            font-weight: normal;
+            line-height: inherit;
+            letter-spacing: -.05em;
+        }
     }
-  }
 
-  // collapsable container
-  .station-details-container {
-    margin-left: $grid-gutter-width/-2;
-    margin-right: $grid-gutter-width/-2;
-    padding: 0 $grid-gutter-width/2;
-    background: #fff; 
-  }
+    .wind-direction {
+        position: relative;
+        display: inline-block;
+        height: $gaugeDiameter;
+        width: $gaugeDiameter;
 
-  // the actual details
-  .station-details {
-    padding: 1em 0;
-    font-size: 1.2rem;
-    color: $gray;
-  }
+        .wind-arrow {
+            display: block;
+            position: absolute;
+            top: calc(50% - #{$gaugeArrowHeight / 2});
+            left: calc(50% - #{$gaugeArrowWidth });
+            height: $gaugeArrowHeight;
+            -webkit-transform-origin: center center;
+            color: #fff;
+            font-size: 2rem;
+            @include transition(all 2s ease-out);
+        }
+    }
 
-  .station-chart {
-    margin-top: 5px;
-  }
+    // collapsable container
+    .station-details-container {
+        margin-left: $grid-gutter-width/-2;
+        margin-right: $grid-gutter-width/-2;
+        padding: 0 $grid-gutter-width/2;
+        background: #fff; 
+    }
+
+    .station-chart {
+        padding: 1.5em 0 0;
+        text-align: center;
+
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+    
+    // the actual details
+    .station-details {
+        padding: 0 0 1.5em;
+        font-size: 1em;
+        color: $gray;
+    }
 }
