@@ -93,8 +93,8 @@
                                         '</div>' +
                                         '<div class="col-xs-6 text-right">' +
                                             '<span class="speed"><b>0.0</b> m/s</span>' +
-                                            '<div class="wind-direction">' +
-                                                '<i class="wind-arrow fa fa-long-arrow-down"></i>' +
+                                            '<div class="wind-direction fa fa-long-arrow-down">' +
+
                                             '</div>' +
                                         '</div>' +
                                     '</div>' +
@@ -135,7 +135,7 @@
             $(listItem).find('.degrees').html(data.angle + '&deg;');
             
             // set the rotation of the wind arrow
-            setWindAngle( $(listItem).find('.wind-arrow'), data.angle );
+            setWindAngle( $(listItem).find('.wind-direction'), data.angle );
 
             // fill the time
             $(listItem).find('.station-timestamp').html(data.timestamp);

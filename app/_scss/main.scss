@@ -16,7 +16,7 @@ $fa-font-path:              "../fonts/fontawesome";
 // custom variables
 
 $gaugeDiameter:       2.5rem;
-$gaugeArrowHeight:    20px;
+$gaugeArrowHeight:    2rem;
 $gaugeArrowWidth:     $gaugeArrowHeight / 4;
 
 body {
@@ -50,7 +50,7 @@ img {
     // full width to make hover 100% of screen
     > li > a {
         display: block;
-        padding: 0.7em $grid-gutter-width / 2;
+        padding: 0.4em 1.6em 0.4em 1em;
         color: $text-color;
         cursor: pointer;
 
@@ -66,11 +66,12 @@ img {
         color: #fff;
         font-size: 1.2em;
         text-transform: uppercase;
+        @include text-overflow;
     }
 
     .speed {
         display: inline-block;
-        margin-right: 20px;
+        margin-right: 1em;
         line-height: 3.5rem;
         
         b {
@@ -85,20 +86,10 @@ img {
     .wind-direction {
         position: relative;
         display: inline-block;
-        height: $gaugeDiameter;
-        width: $gaugeDiameter;
-
-        .wind-arrow {
-            display: block;
-            position: absolute;
-            top: calc(50% - #{$gaugeArrowHeight / 2});
-            left: calc(50% - #{$gaugeArrowWidth });
-            height: $gaugeArrowHeight;
-            -webkit-transform-origin: center center;
-            color: #fff;
-            font-size: 2rem;
-            @include transition(all 2s ease-out);
-        }
+        -webkit-transform-origin: center center;
+        color: #fff;
+        font-size: 1.5em;
+        @include transition(all 2s ease-out);
     }
 
     // collapsable container
