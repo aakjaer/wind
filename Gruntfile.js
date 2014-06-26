@@ -369,7 +369,18 @@ module.exports = function (grunt) {
                 //'imagemin',
                 'svgmin'
             ]
-        }
+        },
+
+        buildcontrol: {
+            dist: {
+                options: {
+                    remote: 'git@github.com:hamsterboy/wind.git',
+                    branch: 'gh-pages',
+                    commit: true,
+                    push: true
+                }
+            }
+        },
     });
 
 
@@ -421,6 +432,13 @@ module.exports = function (grunt) {
         'usemin',
         'htmlmin'
     ]);
+
+    grunt.registerTask('deploy', [
+        //'test',
+        'build',
+        'buildcontrol'
+    ]);
+
 
     grunt.registerTask('default', [
         'newer:jshint',
