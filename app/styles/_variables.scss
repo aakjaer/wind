@@ -1,0 +1,18 @@
+$body-bg:                   		#292929 !default;
+$brand-primary:             		#1fe1c1;
+$text-color:                		#ccc;
+$font-family-sans-serif:    		"Lato", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+
+// Font awesome icons
+$fa-font-path:              		"../fonts/font-awesome";
+
+
+// custom variables
+$gaugeDiameter:       				2.5rem;
+$gaugeArrowHeight:    				2rem;
+$gaugeArrowWidth:     				$gaugeArrowHeight / 4;
+
+
+$pull-refresh-pull-msg: 			"Pull to refresh...";
+$pull-refresh-release-msg:  		"Release to refresh...";
+$pull-refresh-loading-msg: 	 		"Getting the latest numbers...";

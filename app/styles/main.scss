@@ -1,0 +1,164 @@
+
+$body-bg:                   #292929 !default;
+$brand-primary:             #1fe1c1;
+$text-color:                #ccc;
+$font-family-sans-serif:    "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+
+// Font awesome icons
+$fa-font-path:              "../fonts/font-awesome";
+
+// import font awesome 
+@import "../../bower_components/font-awesome/scss/font-awesome";
+// import font bootstrap
+@import "../../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap.scss";
+
+
+// custom variables
+
+$gaugeDiameter:       2.5rem;
+$gaugeArrowHeight:    2rem;
+$gaugeArrowWidth:     $gaugeArrowHeight / 4;
+
+body {
+
+  @media (min-width: $screen-sm-min) {
+    //font-size:  calc(#{$font-size-base} + 50%);
+    }
+
+    @media (min-width: $screen-md-min) {
+        //font-size: calc(#{$font-size-base} + 200%);
+    }
+}
+
+img {
+    @extend .img-responsive;
+}
+
+
+.weather-stations {
+
+    // visibility settings
+    .station {
+        position: relative;
+        @include opacity(0);
+    }
+
+    .station-wind-speed,
+    .station-wind-direction {
+        @include opacity(1);
+    }
+
+
+    // station is loading its data
+    .is-loading {
+        .station-wind-speed,
+        .station-wind-direction {
+            @include opacity(0);
+        }
+
+        .station-loading-icon {
+            @include opacity(1);
+        }
+    }
+
+    .station > a,
+    .station-name,
+    .station-wind-speed,
+    .station-wind-direction,
+    .station-loading-icon {
+        @include transition(all 1s ease);
+    }
+
+    // full width to make hover 100% of screen
+    .station > a {
+        display: block;
+        padding: 0.3em 1.4em 0.3em 1em;
+        color: $text-color;
+        border-bottom: 1px solid lighten($body-bg, 3);
+        cursor: pointer;
+
+        &:active,
+        &:hover {
+            background-color: lighten($body-bg, 3);
+        }
+    }
+
+    .station-name {
+        line-height: 4rem;
+        margin: 0;
+        color: #fff;
+        font-size: 1.2em;
+        text-transform: uppercase;
+        @include text-overflow;
+    }
+
+    .station-wind-speed {
+        display: inline-block;
+        margin-right: 1.2em;
+        line-height: 4rem;
+        
+        b {
+            color: $brand-primary;
+            font-size: 1.5em;
+            font-weight: normal;
+            line-height: 4rem;
+            letter-spacing: -.05em;
+        }
+    }
+
+    .station-loading-icon {
+        position: absolute;
+        right: $grid-gutter-width / 2;
+        @include opacity(0);
+        line-height: 4rem;
+    }
+
+    .station-wind-direction {
+        position: relative;
+        display: inline-block;
+        -webkit-transform-origin: center center;
+        color: #fff;
+        font-size: 1.5em;
+    }
+
+    // collapsable container
+    .station-details-container {
+        padding: 0 $grid-gutter-width/2;
+        background: #fff; 
+    }
+
+    .station-chart {
+        padding: 1.5em 0 0;
+        text-align: center;
+
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+    
+    // the actual details
+    .station-details {
+        padding: 0 0 1.5em;
+        font-size: 1em;
+        color: $gray;
+    }
+}
+
+
+.flip {
+  -webkit-transform: rotateX(180deg);
+  -webkit-transform: rotateX(180deg);
+  -webkit-transform: rotateX(180deg);
+    
+  -webkit-backface-visibility: visible;
+  -moz-backface-visibility:    visible;
+  -ms-backface-visibility:     visible;
+}
+
+.flip.hide-back {
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility:    hidden;
+  -ms-backface-visibility:     hidden;
+}
