@@ -1,16 +1,14 @@
+// Font awesome icons
+$fa-font-path:              		"../fonts/font-awesome";
+
+
 $body-bg:                   		#292929 !default;
 $brand-primary:             		#1fe1c1;
 $text-color:                		#ccc;
 $font-family-sans-serif:    		"Lato", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
 
-// Font awesome icons
-$fa-font-path:              		"../fonts/font-awesome";
 
-
-// custom variables
-$gaugeDiameter:       				2.5rem;
-$gaugeArrowHeight:    				2rem;
-$gaugeArrowWidth:     				$gaugeArrowHeight / 4;
+$station-line-height: 				42px;
 
 
 $pull-refresh-pull-msg: 			"Pull to refresh...";

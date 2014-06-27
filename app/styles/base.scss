@@ -12,10 +12,8 @@
 
 
 
-
-
-
 body {
+    font-weight: 300;
 
   @media (min-width: $screen-sm-min) {
     //font-size:  calc(#{$font-size-base} + 50%);
@@ -96,24 +94,24 @@ header[role="banner"] {
     }
 
     .station-name {
-        line-height: 4rem;
         margin: 0;
         color: #fff;
         font-size: 1.2em;
+        line-height: $station-line-height;
         text-transform: uppercase;
         @include text-overflow;
     }
 
     .station-wind-speed {
         display: inline-block;
-        margin-right: 1.2em;
-        line-height: 4rem;
+        margin-left: 1.2em;
+        line-height: $station-line-height;
         
         b {
             color: $brand-primary;
             font-size: 1.5em;
             font-weight: normal;
-            line-height: 4rem;
+            line-height: $station-line-height;
             letter-spacing: -.05em;
         }
     }
@@ -123,7 +121,7 @@ header[role="banner"] {
         position: absolute;
         right: $grid-gutter-width / 2;
         @include opacity(0);
-        line-height: 4rem;
+        line-height: $station-line-height;
     }
 
     .station-wind-direction {

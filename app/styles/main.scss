@@ -21,6 +21,7 @@ $gaugeArrowWidth:     $gaugeArrowHeight / 4;
 
 body {
     font-weight: 300;
+
   @media (min-width: $screen-sm-min) {
     //font-size:  calc(#{$font-size-base} + 50%);
     }
@@ -94,7 +95,6 @@ img {
 
     .station-wind-speed {
         display: inline-block;
-        margin-right: 1.2em;
         line-height: 4rem;
         
         b {
