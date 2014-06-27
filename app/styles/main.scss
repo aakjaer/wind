@@ -20,7 +20,7 @@ $gaugeArrowHeight:    2rem;
 $gaugeArrowWidth:     $gaugeArrowHeight / 4;
 
 body {
-
+    font-weight: 300;
   @media (min-width: $screen-sm-min) {
     //font-size:  calc(#{$font-size-base} + 50%);
     }
@@ -87,7 +87,7 @@ img {
         line-height: 4rem;
         margin: 0;
         color: #fff;
-        font-size: 1.2em;
+        font-size: 1.1em;
         text-transform: uppercase;
         @include text-overflow;
     }
