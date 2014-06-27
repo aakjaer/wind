@@ -226,16 +226,6 @@
             }
         };
 
-
-        yepnope({
-          load: ['/scripts/vendor/pull-to-refresh.js'],
-          callback: {
-            'pull-to-refresh': function () {
-              console.log('pull stuff loaded!');
-            }
-          }
-        });
-
         var stations = [
             { name: 'Drogden', id: '6183' },
             { name: 'Kbh lufthavn', id: '6180' },
