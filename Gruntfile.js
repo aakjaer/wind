@@ -209,7 +209,7 @@ module.exports = function (grunt) {
                         '<%= config.dist %>/scripts/{,*/}*.js',
                         '<%= config.dist %>/styles/{,*/}*.css',
                         '<%= config.dist %>/images/{,*/}*.*',
-                        '<%= config.dist %>/fonts/{,*/}*.*',
+                        //'<%= config.dist %>/fonts/{,*/}*.*',
                         '<%= config.dist %>/*.{ico,png}'
                     ]
                 }
@@ -317,8 +317,7 @@ module.exports = function (grunt) {
                         '*.{ico,png,txt}',
                         '.htaccess',
                         'images/{,*/}*.webp',
-                        '{,*/}*.html',
-                        'bower_components/font-awesome/fonts/*.*'
+                        '{,*/}*.html'
                     ]
                 }, {
                     expand: true,
@@ -330,6 +329,7 @@ module.exports = function (grunt) {
                     expand: true,
                     dot: true,
                     cwd: '.',
+                    flatten: true,
                     src: ['bower_components/font-awesome/fonts/*.*'],
                     dest: '<%= config.dist %>/fonts/font-awesome/'
                 }]
@@ -372,7 +372,7 @@ module.exports = function (grunt) {
             dist: [
                 'sass',
                 'copy:styles',
-                //'imagemin',
+                'imagemin',
                 'svgmin'
             ]
         },
