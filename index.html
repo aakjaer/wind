@@ -1,38 +1,11 @@
-<!DOCTYPE html><html class=no-js><head><meta charset=utf-8><title>wind2</title><meta name=description content=""><meta name=viewport content="width=device-width"><link rel="shortcut icon" href=/6df2b309.favicon.ico><!-- Place favicon.ico and apple-touch-icon.png in the root directory --><link rel=stylesheet href=styles/57c28173.main.css><link rel=stylesheet href="http://fonts.googleapis.com/css?family=Lato:300"><script src=scripts/vendor/1c8c48de.modernizr.js></script><body><!--[if lt IE 10]>
+<!DOCTYPE html><html class=no-js><head><meta charset=utf-8><title>Windfinder</title><meta name=description content=""><meta name=viewport content="width=device-width"><link rel="shortcut icon" href=/6df2b309.favicon.ico><!-- Place favicon.ico and apple-touch-icon.png in the root directory --><link rel=stylesheet href=styles/74ce770d.main.css><link rel=stylesheet href="http://fonts.googleapis.com/css?family=Lato:300"><script src=scripts/vendor/a790ff0e.modernizr.js></script><body><!--[if lt IE 10]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]--><!-- weather station markup will be injected into #content
-        <ul id="weather-stations" class="weather-stations list-unstyled"></ul>
-        --><!-- weather stations template 
-        <script id="ws-template" type="text/html">
-            {{#stations}}
-            <li class="station station-{{ id }} is-loading" data-station-id="{{ id }}">
-                <a data-toggle="collapse" data-target="#details-{{ id }}">
-                    <div class="row">
-                        <div class="col-xs-7">
-                            <h3 class="station-name">{{ name }}</h3>
-                        </div>
-                        <div class="col-xs-5 text-right">
-                            <div class="station-loading-icon">
-                                <i class="fa fa-circle-o-notch fa-spin"></i>
-                            </div>
-                            <span class="station-wind-speed"><b></b> m/s</span>
-                            <div class="station-wind-direction fa fa-long-arrow-down"></div>
-                        </div>
-                    </div>
-                </a>
-                <div id="details-{{ id }}" class="station-details-container collapse">
-                    <figure class="station-chart">
-                        <img />
-                    </figure>
-                    <div class="station-details text-center">
-                        <i class="fa fa-clock-o"></i>
-                        <time class="station-timestamp"></time> - 
-                        <span class="station-temperature"></span> &deg;C
-                    </div>
+        <![endif]--><div id=weather-app><!-- <div id="pullrefresh">
+                <div class="message">
+                    <div id="pullrefresh-icon" class="icon arrow arrow-down"></div>
+                    <span></span>
                 </div>
-            </li>
-            {{/stations}}
-        </script>--><div id=weather-app><div id=pullrefresh><div class=message><div id=pullrefresh-icon class="icon arrow arrow-down"></div><span></span></div></div><div id=content><div id=weather-app><ul class="weather-stations list-unstyled"></ul></div></div></div><script id=ws-template2 type=text/html><li class="station station-{{ stationId }}" data-state="" data-station-id="{{ stationId }}">
+            </div> --><div id=content><div id=weather-app><ul class="weather-stations list-unstyled"></ul></div></div></div><script id=weather-station-template type=text/html><li class="station station-{{ stationId }}" data-state="" data-station-id="{{ stationId }}">
                 <a data-toggle="collapse" data-target="#details-{{ stationId }}">
                     <div class="row">
                         <div class="col-xs-7">
@@ -60,9 +33,9 @@
                         <span class="station-temperature"></span> &deg;C
                     </div>
                 </div>
-            </li></script><script src=scripts/b8291600.vendor.js></script><!-- Google Analytics: change UA-XXXXX-X to be your site's ID. --><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            </li></script><script id=list-header-template type=text/html><li class="region-header animated fadeIn">{{ regionName }}</li></script><script src=scripts/b8291600.vendor.js></script><!-- Google Analytics: change UA-XXXXX-X to be your site's ID. --><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
             function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
             e=o.createElement(i);r=o.getElementsByTagName(i)[0];
             e.src='//www.google-analytics.com/analytics.js';
             r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','UA-7971756-1');ga('send','pageview');</script><script src=scripts/b604cce9.plugins.js></script><script src=scripts/66a9e33b.main.js></script>
+            ga('create','UA-7971756-1');ga('send','pageview');</script><script src=scripts/b604cce9.plugins.js></script><script src=scripts/ae88be5a.main.js></script>
