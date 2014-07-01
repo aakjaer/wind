@@ -6,42 +6,68 @@
 
     $(document).ready(function(){
 
-        var REMOTE_BASE_URL         = 'http://servlet.dmi.dk/bv/servlet/',
-            DATA_URL                = REMOTE_BASE_URL + 'bv?stat=',
-            IMAGE_URL               = REMOTE_BASE_URL + 'bvImage?stat=',
-            IMAGE_URL_PARAMETER     = '&param=wind',
-            XDOMAIN_API_URL         = 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D%22' + encodeURIComponent(DATA_URL),
-            CONTAINER               = $('#weather-app .weather-stations'),
-            TEMPLATE                = $('#ws-template2').html();
+        var REMOTE_BASE_URL             = 'http://servlet.dmi.dk/bv/servlet/',
+            DATA_URL                    = REMOTE_BASE_URL + 'bv?stat=',
+            IMAGE_URL                   = REMOTE_BASE_URL + 'bvImage?stat=',
+            IMAGE_URL_PARAMETER         = '&param=wind',
+            XDOMAIN_API_URL             = 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D%22' + encodeURIComponent(DATA_URL),
+            CONTAINER                   = $('#weather-app .weather-stations'),
+            TEMPLATE                    = $('#weather-station-template').html(),
+            LIST_HEADER_TEMPLATE        = $('#list-header-template').html();
 
 
-        function WeatherApp(data) {
-            this.initData = data;
+        function WeatherApp() {
             this.weatherStations = [];
         }
 
         WeatherApp.prototype = {
             constructor: WeatherApp,
 
-            init : function() {
-
+            // loop through the initial stations and add them one by one
+            addWeatherStations : function(stationList, label) {
                 var app = this;
 
-                $.each(this.initData, function(i, stationData) {
+                if (typeof stationList !== 'object' || stationList.length < 1) {
+                    throw( new TypeError('addWeatherStations argument expected to be an Object (found "' + typeof stationList) + '"), and argument must contain at least one weather station (found "' + stationList.length + '")');
+                }
+
+                // insert region header
+                if (label.length > 0) {
+                    this.renderRegionLabel(label);
+                }
+
+                $.each(stationList, function(i, stationData) {
 
                     var station = new WeatherStation(stationData.id, stationData.name);
+
+                    // render the station markup 
                     station.renderWeatherStation();
 
                     // save reference to each weather station
-                    app.weatherStations[i] = station;
+                    app.weatherStations.push(station);
                     
                     // delay the fadein to create the "curtain effect"
                     setTimeout(function(){
                         station.getDOMElement().addClass('animated fadeIn');
-                    }, (i+1) * 100);
+                    }, (app.weatherStations.length+1) * 100);
 
                     station.loadWeatherData();
                 });
+            },
+
+            renderRegionLabel : function(regionLabel) {
+
+                var html,
+                    view = { 'regionName': regionLabel };
+
+                // speed up future uses of mustache
+                Mustache.parse(LIST_HEADER_TEMPLATE);
+
+                // render the mustache template
+                html = Mustache.render(LIST_HEADER_TEMPLATE, view);
+
+                // append the renderend template
+                CONTAINER.append(html);
             },
 
             refreshAll : function() {
@@ -226,22 +252,38 @@
             }
         };
 
-        var stations = [
-            { name: 'Drogden', id: '6183' },
-            { name: 'Kbh lufthavn', id: '6180' },
-            { name: 'Gniben', id: '6169' },
-            { name: 'Jægerspris', id: '56' },
-            { name: 'Nakkehoved Fyr', id: '6168' },
-            { name: 'Kraneled', id: '1350' },
-            { name: 'Vindebæk Kyst', id: '6147' },
-            { name: 'Langø', id: '6138' },
-            { name: 'Thorsminde', id: '6052' }
-        ];
+        var sealand = [
+                { name: 'Drogden', id: '6183' },
+                { name: 'Kbh lufthavn', id: '6180' },
+                { name: 'Gniben', id: '6169' },
+                { name: 'Jægerspris', id: '56' },
+                { name: 'Nakkehoved Fyr', id: '6168' },
+                { name: 'Langø', id: '6138' }
+            ],
 
-        // create the weather app
-        // feed it the list of stations - slllurp
-        var weatherApp = new WeatherApp(stations);
-        weatherApp.init();
+            fyn = [
+                { name: 'Kraneled', id: '1350' },
+                { name: 'Assens', id: '6123' },
+                { name: 'Vindebæk Kyst', id: '6147' }
+            ],
+
+            jutland = [
+                { name: 'Hirtshals', id: '6033' },
+                { name: 'Thyborøn', id: '6052' },
+                { name: 'Torsminde', id: '6055' },
+                { name: 'Sletterhage Fyr', id: '6073' },
+                { name: 'Hvide Sande', id: '6058' },
+                { name: 'Rømø', id: '6096' }
+            ],
+
+
+            // create the weather app
+            // feed it the list of stations - slllurp
+            weatherApp = new WeatherApp();
+
+        weatherApp.addWeatherStations(sealand, 'Sjælland');
+        weatherApp.addWeatherStations(fyn, 'Fyn');
+        weatherApp.addWeatherStations(jutland, 'Jylland');
 
     });
 }());

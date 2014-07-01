@@ -2,7 +2,7 @@
 <html class="no-js">
     <head>
         <meta charset="utf-8">
-        <title>wind2</title>
+        <title>Windfinder</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
         <link rel="shortcut icon" href="/favicon.ico">
@@ -28,49 +28,13 @@
         <![endif]-->
 
 
-        <!-- weather station markup will be injected into #content
-        <ul id="weather-stations" class="weather-stations list-unstyled"></ul>
-        -->
-
-        <!-- weather stations template 
-        <script id="ws-template" type="text/html">
-            {{#stations}}
-            <li class="station station-{{ id }} is-loading" data-station-id="{{ id }}">
-                <a data-toggle="collapse" data-target="#details-{{ id }}">
-                    <div class="row">
-                        <div class="col-xs-7">
-                            <h3 class="station-name">{{ name }}</h3>
-                        </div>
-                        <div class="col-xs-5 text-right">
-                            <div class="station-loading-icon">
-                                <i class="fa fa-circle-o-notch fa-spin"></i>
-                            </div>
-                            <span class="station-wind-speed"><b></b> m/s</span>
-                            <div class="station-wind-direction fa fa-long-arrow-down"></div>
-                        </div>
-                    </div>
-                </a>
-                <div id="details-{{ id }}" class="station-details-container collapse">
-                    <figure class="station-chart">
-                        <img />
-                    </figure>
-                    <div class="station-details text-center">
-                        <i class="fa fa-clock-o"></i>
-                        <time class="station-timestamp"></time> - 
-                        <span class="station-temperature"></span> &deg;C
-                    </div>
-                </div>
-            </li>
-            {{/stations}}
-        </script>-->
-
         <div id="weather-app">
-            <div id="pullrefresh">
+            <!-- <div id="pullrefresh">
                 <div class="message">
                     <div id="pullrefresh-icon" class="icon arrow arrow-down"></div>
                     <span></span>
                 </div>
-            </div>
+            </div> -->
 
             <div id="content">
                 <div id="weather-app">
@@ -79,7 +43,7 @@
             </div>
         </div>
 
-        <script id="ws-template2" type="text/html">
+        <script id="weather-station-template" type="text/html">
             <li class="station station-{{ stationId }}" data-state="" data-station-id="{{ stationId }}">
                 <a data-toggle="collapse" data-target="#details-{{ stationId }}">
                     <div class="row">
@@ -109,6 +73,10 @@
                     </div>
                 </div>
             </li>
+        </script>
+
+        <script id="list-header-template" type="text/html">
+            <li class="region-header animated fadeIn">{{ regionName }}</li>
         </script>
 
 
