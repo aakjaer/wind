@@ -144,8 +144,8 @@
 
             filterData : function(data){
 
-                var re1,re2,re3,re4,re5,re6,re7,re8,p,m,
-                    time, angle, speed, temperature, imageURL, cleanData;
+                var re1,re2,re3,re4,re5,re6,p,m,
+                    time, angle, speed, imageURL, cleanData;
 
                 // the returned data is a mess - might need to find a better way of doing this
                 // filter all the nasties out
@@ -157,29 +157,29 @@
                 data = data.replace(/<script.*\/>/,''); // no self closing scripts
                 data = data.replace(/<img.*\/>/,''); // no images
 
+
+                // this needs improvements!
                 re1 = '.*?';  // Non-greedy match on filler
                 re2 = '((?:(?:[0-1][0-9])|(?:[2][0-3])|(?:[0-9])):(?:[0-5][0-9])(?::[0-5][0-9])?(?:\\s?(?:am|AM|pm|PM))?)'; // HourMinuteSec 1
                 re3 = '.*?';    // Non-greedy match on filler
                 re4 = '(\\d+)'; // Integer Number 1
                 re5 = '.*?';    // Non-greedy match on filler
                 re6 = '([+-]?\\d*\\.\\d+)(?![-+0-9\\.])';   // Float 1
-                re7 = '.*?';    // Non-greedy match on filler
-                re8 = '([+-]?\\d*\\.\\d+)(?![-+0-9\\.])';   // Float 2
 
-                p = new RegExp(re1+re2+re3+re4+re5+re6+re7+re8,['i']);
+                p = new RegExp(re1+re2+re3+re4+re5+re6,['i']);
                 m = p.exec(data);
 
-                if (m !== null) {
+                if (m != null) {
                     time = m[1].replace(/</,'&lt;');
                     angle = m[2].replace(/</,'&lt;');
                     speed = m[3].replace(/</,'&lt;');
-                    temperature = m[4].replace(/</,'&lt;');
+                    //temperature = m[4].replace(/</,'&lt;');
 
                     // data in JSON format
                     cleanData = {
                         windSpeed: speed,
                         windAngle: angle,
-                        temperature: temperature,
+                        //temperature: temperature,
                         timestamp: time
                     };
 
@@ -190,7 +190,7 @@
             setWeatherData : function(data){
                 this.windSpeed = data.windSpeed;
                 this.windAngle = data.windAngle;
-                this.temperature = data.temperature;
+                //this.temperature = data.temperature;
                 this.timestamp = data.timestamp;
             },
 
@@ -209,7 +209,7 @@
                 this.DOMElement.find('.station-timestamp').html(this.timestamp);
 
                 // fill the temperature
-                this.DOMElement.find('.station-temperature').html(this.temperature);
+                //this.DOMElement.find('.station-temperature').html(this.temperature);
 
                 // add the image url
                 this.DOMElement.find('.station-chart img').attr('src', this.chartImageURL);
@@ -268,7 +268,6 @@
             ],
 
             jutland = [
-                { name: 'Hirtshals', id: '6033' },
                 { name: 'Thyborøn', id: '6052' },
                 { name: 'Torsminde', id: '6055' },
                 { name: 'Sletterhage Fyr', id: '6073' },
