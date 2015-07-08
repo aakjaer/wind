@@ -2,7 +2,7 @@
 'use strict';
 
 (function() {
-    
+
 
     $(document).ready(function(){
 
@@ -24,8 +24,9 @@
             constructor: WeatherApp,
 
             // loop through the initial stations and add them one by one
-            addWeatherStations : function(stationList, label) {
-                var app = this;
+            addWeatherStations : function(data, label) {
+                var app = this,
+                    stationList = data.stations;
 
                 if (typeof stationList !== 'object' || stationList.length < 1) {
                     throw( new TypeError('addWeatherStations argument expected to be an Object (found "' + typeof stationList) + '"), and argument must contain at least one weather station (found "' + stationList.length + '")');
@@ -38,14 +39,14 @@
 
                 $.each(stationList, function(i, stationData) {
 
-                    var station = new WeatherStation(stationData.id, stationData.name);
+                    var station = new WeatherStation(stationData.id, stationData.name, stationData.mapID);
 
-                    // render the station markup 
+                    // render the station markup
                     station.renderWeatherStation();
 
                     // save reference to each weather station
                     app.weatherStations.push(station);
-                    
+
                     // delay the fadein to create the "curtain effect"
                     setTimeout(function(){
                         station.getDOMElement().addClass('animated fadeIn');
@@ -77,26 +78,28 @@
 
 
         /////////////////////////////////
-        
+
         // WeatherStation Class
-        
+
         /////////////////////////////////
 
 
-        function WeatherStation (id, name) {
+        function WeatherStation (id, name, mapID) {
             this.stationId          = id;
             this.stationName        = name;
             this.windSpeed          = 0;
             this.windAngle          = 0;
             this.temperature        = '';
             this.timestamp          = '';
+            this.mapTimestamp       = this.getTimeStamp(-2);
             this.chartImageURL      = IMAGE_URL + this.stationId + IMAGE_URL_PARAMETER;
             this.DOMElement         = {};
+            this.mapID              = mapID;
         }
-         
+
 
         WeatherStation.prototype = {
-            
+
             constructor: WeatherStation,
 
             whoAmI : function() {
@@ -121,7 +124,7 @@
 
                         if (data.results[0]){
                             //console.log(self.stationName);
-                            // filter the data and return an object 
+                            // filter the data and return an object
                             // with the weather data in the right format
                             cleanData = self.filterData(data.results[0]);
 
@@ -194,10 +197,27 @@
                 this.timestamp = data.timestamp;
             },
 
+            addZeroBefore : function(n) {
+                return (n < 10 ? '0' : '') + n;
+            },
+
+            getTimeStamp : function(offset) {
+                var now                 = new Date(),
+                    hoursOffset         = now.getHours() - 2, // + (offset),
+                    year                = now.getFullYear(),
+                    month               = this.addZeroBefore(now.getMonth() + 1),
+                    date                = this.addZeroBefore(now.getDate()),
+                    hours               = this.addZeroBefore(hoursOffset),
+                    timestamp           = year + month + date + hours + '0000';
+
+                 return timestamp;
+            },
+
             fillWeatherData : function() {
 
-                var windArrow   = this.DOMElement.find('.station-wind-direction'),
-                    self        = this;
+                var windArrow           = this.DOMElement.find('.station-wind-direction'),
+                    self                = this;
+
 
                 // fill in the wind speed
                 this.DOMElement.find('.station-wind-speed b').html(this.windSpeed);
@@ -229,6 +249,7 @@
                 $(elm[0]).css('-webkit-transform','rotate('+ angle + 'deg)');
                 $(elm[0]).css('-ms-transform','rotate('+ angle + 'deg)');
                 $(elm[0]).css('-o-transform','rotate('+ angle + 'deg)');
+                $(elm[0]).css('transform','rotate('+ angle + 'deg)');
             },
 
             setState : function(state) {
@@ -252,37 +273,83 @@
             }
         };
 
-        var sealand = [
-                { name: 'Drogden', id: '6183' },
-                { name: 'Kbh lufthavn', id: '6180' },
-                { name: 'Gniben', id: '6169' },
-                { name: 'Jægerspris', id: '56' },
-                { name: 'Nakkehoved Fyr', id: '6168' },
-                { name: 'Langø', id: '6138' }
-            ],
 
-            fyn = [
-                { name: 'Kraneled', id: '1350' },
-                { name: 'Assens', id: '6123' },
-                { name: 'Vindebæk Kyst', id: '6147' }
-            ],
+        var sealand = {
+                stations: [
+                    { name: 'Drogden', id: '6183', mapID: 'OERESUND' },
+                    { name: 'Kbh lufthavn', id: '6180', mapID: 'OERESUND' },
+                    { name: 'Lyngbyvej', id: '6184', mapID: 'OERESUND' },
+                    { name: 'Gniben', id: '6169', mapID: 'KATTEGAT_SOUTH' },
+                    { name: 'Jægerspris', id: '56', mapID: 'SOUND_BELT' },
+                    { name: 'Nakkehoved Fyr', id: '6168', mapID: 'KATTEGAT_SOUTH' },
+                    { name: 'Vindebæk Kyst', id: '6147', mapID: 'SJAELLAND_SOUTH' },
+                    { name: 'Røsnæs Fyr', id: '6159', mapID: 'SOUND_BELT' }
+                ]
+            },
 
-            jutland = [
-                { name: 'Thyborøn', id: '6052' },
-                { name: 'Torsminde', id: '6055' },
-                { name: 'Sletterhage Fyr', id: '6073' },
-                { name: 'Hvide Sande', id: '6058' },
-                { name: 'Rømø', id: '6096' }
-            ],
+            lolland_falster = {
+                stations: [
+                    { name: 'Langø', id: '6138', mapID: 'SJAELLAND_SOUTH' },
+                    { name: 'Gedser', id: '6149', mapID: 'SJAELLAND_SOUTH' }
+                ]
+            },
+
+            fyn = {
+                stations: [
+                    { name: 'Kraneled', id: '1350', mapID: 'BELT' },
+                    { name: 'Assens', id: '6123', mapID: 'BELT' },
+                    { name: 'Sydfyns Flyveplads', id: '6124', mapID: 'BELT' },
+                    { name: 'Klintholm', id: '871', mapID: 'BELT' }
+                ]
+            },
+
+            jutland_north = {
+                stations: [
+                    { name: 'Frederikshavn', id: '6042', mapID: 'SKAGERRAK' },
+                    { name: 'Hirtshals', id: '6033', mapID: 'SKAGERRAK' },
+                    { name: 'Hanstholm', id: '6021', mapID: 'SKAGERRAK' },
+                    { name: 'Skagen Fyr', id: '6041', mapID: 'SKAGERRAK' }
+                ]
+            },
+
+            jutland_center = {
+                stations: [
+                    { name: 'Hvide Sande', id: '6058', mapID: 'BELT' },
+                    { name: 'Thyborøn', id: '6052', mapID: 'FISKER' },
+                    { name: 'Torsminde', id: '6055', mapID: 'FISKER' },
+                    { name: 'Sletterhage Fyr', id: '6073', mapID: 'KATTEGAT_SOUTH' }
+                ]
+            },
+
+            jutland_south = {
+                stations: [
+                    { name: 'Rømø', id: '6096', mapID: 'TYSKE' },
+                    { name: 'Højer', id: '653', mapID: 'TYSKE' },
+                    { name: 'Blåvandshug Fyr', id: '6081', mapID: 'TYSKE' },
+                    { name: 'Vester Vedsted', id: '6093', mapID: 'TYSKE' }
+                ]
+            },
+
+            islands = {
+                stations: [
+                    { name: 'Omø Fyr', id: '6151', mapID: 'SJAELLAND_SOUTH' },
+                    { name: 'Anholt', id: '6079', mapID: 'KATTEGAT' }
+                ]
+            };
 
 
-            // create the weather app
-            // feed it the list of stations - slllurp
-            weatherApp = new WeatherApp();
+
+        // create the weather app
+        // feed it the list of stations - slllurp
+        var weatherApp = new WeatherApp();
 
         weatherApp.addWeatherStations(sealand, 'Sjælland');
+        weatherApp.addWeatherStations(lolland_falster, 'Lolland Falster');
         weatherApp.addWeatherStations(fyn, 'Fyn');
-        weatherApp.addWeatherStations(jutland, 'Jylland');
+        weatherApp.addWeatherStations(jutland_north, 'Nordjylland');
+        weatherApp.addWeatherStations(jutland_center, 'Midtjylland');
+        weatherApp.addWeatherStations(jutland_south, 'Sønderjylland');
+        weatherApp.addWeatherStations(islands, 'Øerne');
 
     });
 }());

@@ -1,7 +1,7 @@
-// import font awesome 
+// import font awesome
 @import "variables";
 
-// import font awesome 
+// import font awesome
 @import "../../bower_components/font-awesome/scss/font-awesome";
 
 // import font bootstrap
@@ -82,10 +82,13 @@ header[role="banner"] {
     .station > a,
     .station-name,
     .station-wind-speed,
-    .station-wind-direction,
     .station-loading-icon,
     .station-error-icon {
-        @include transition(all 1s ease);
+        transition: all 0.3s;
+    }
+
+    .station-wind-direction {
+        transition: all 1s;
     }
 
     // full width to make hover 100% of screen
@@ -96,10 +99,6 @@ header[role="banner"] {
         border-bottom: 1px solid lighten($body-bg, 3);
         cursor: pointer;
         background-color: transparent;
-
-        &:hover {
-            background-color: lighten($body-bg, 3);
-        }
     }
 
     .station-name {
@@ -111,11 +110,14 @@ header[role="banner"] {
         @include text-overflow;
     }
 
+    .station > a:not(.collapsed) {
+    }
+
     .station-wind-speed {
         display: inline-block;
         margin-left: 1.2em;
         line-height: $station-line-height;
-        
+
         b {
             color: $brand-primary;
             font-size: 1.5em;
@@ -144,7 +146,8 @@ header[role="banner"] {
     // collapsable container
     .station-details-container {
         padding: 0 $grid-gutter-width/2;
-        background: #fff; 
+        background: #fff;
+        text-align: center;
     }
 
     .station-chart {
@@ -157,13 +160,27 @@ header[role="banner"] {
             margin-right: auto;
         }
     }
-    
+
     // the actual details
     .station-details {
-        padding: 0 0 1.5em;
         font-size: 1em;
         color: $gray;
     }
+
+    .station-map {
+        position: relative;
+        display: inline-block;
+        margin: 1.5em auto;
+
+        img {
+            border-radius: 5px;
+        }
+    }
+}
+
+// wind map
+.map-layer {
+    position: absolute;
 }
 
 
@@ -171,7 +188,7 @@ header[role="banner"] {
   -webkit-transform: rotateX(180deg);
   -webkit-transform: rotateX(180deg);
   -webkit-transform: rotateX(180deg);
-    
+
   -webkit-backface-visibility: visible;
   -moz-backface-visibility:    visible;
   -ms-backface-visibility:     visible;
