@@ -1,4 +1,4 @@
-<!DOCTYPE html><html class=no-js><head><meta charset=utf-8><title>Windfinder</title><meta name=description content=""><meta name=viewport content="width=device-width"><link rel="shortcut icon" href=/6df2b309.favicon.ico><!-- Place favicon.ico and apple-touch-icon.png in the root directory --><link rel=stylesheet href=styles/caa164dc.main.css><link rel=stylesheet href="//fonts.googleapis.com/css?family=Lato:300"><script src=scripts/vendor/927df731.modernizr.js></script><body><div id=weather-app><div id=content><div id=weather-app><ul id=weather-stations class="weather-stations list-unstyled"></ul></div></div></div><script id=weather-station-template type=text/html><li class="station station-{{ stationId }}" data-state="" data-station-id="{{ stationId }}">
+<!DOCTYPE html><html class=no-js><head><meta charset=utf-8><title>Windfinder</title><meta name=description content=""><meta name=viewport content="width=device-width"><link rel="shortcut icon" href=/6df2b309.favicon.ico><!-- Place favicon.ico and apple-touch-icon.png in the root directory --><link rel=stylesheet href=styles/6cdb4b1c.main.css><link rel=stylesheet href="//fonts.googleapis.com/css?family=Lato:300"><script src=scripts/vendor/927df731.modernizr.js></script><body><div id=weather-app><div id=content><div id=weather-app><ul id=weather-stations class="weather-stations list-unstyled"></ul></div></div></div><script id=weather-station-template type=text/html><li class="station station-{{ stationId }}" data-state="" data-station-id="{{ stationId }}">
                 <a data-toggle="collapse" data-target="#details-{{ stationId }}" data-parent="#weather-stations">
                     <div class="row">
                         <div class="col-xs-7">
@@ -11,7 +11,7 @@
                             <div class="station-loading-icon">
                                 <i class="fa fa-circle-o-notch fa-spin"></i>
                             </div>
-                            <div class="station-wind-direction fa fa-long-arrow-down"></div>
+                            <div class="station-wind-direction"></div>
                             <span class="station-wind-speed"><b></b> m/s</span>
                         </div>
                     </div>
@@ -23,17 +23,9 @@
                                 <img />
                             </figure>
                             <div class="station-details text-center">
-                                <i class="fa fa-clock-o"></i>
-                                <time class="station-timestamp"></time>
+                                Seneste måling: <time class="station-timestamp"></time>
                             </div>
                         </div>
-                         <div class="col-sm-6">
-                            <figure class="station-map">
-                                <img class="map-layer map-speed-arrows" src="http://static.fcoo.dk/ifm-prod/dynamic_data/DMI_HIRLAM-S03_NSBALTIC_3NM/DMI_HIRLAM-S03_NSBALTIC_3NM_{{ mapID }}_Wind_Direction_black_{{ mapTimestamp }}.gif" alt="speed-map" />
-                                <img class="map-layer map-outline" src="http://static.fcoo.dk/ifm-prod/static_data/{{ mapID }}_CoastLine.gif" alt="">
-                                <img class="map-speed" src="http://static.fcoo.dk/ifm-prod/dynamic_data/DMI_HIRLAM-S03_NSBALTIC_3NM/DMI_HIRLAM-S03_NSBALTIC_3NM_{{ mapID }}_Wind_ms_WBGYR_10colors_Field_{{ mapTimestamp }}.gif" alt="speed-map" />
-                            </figure>
-                         </div>
                     </div>
                 </div>
             </li></script><script id=list-header-template type=text/html><li class="region-header animated fadeIn">{{ regionName }}</li></script><script src=//cdnjs.cloudflare.com/ajax/libs/mustache.js/2.1.2/mustache.min.js></script><script src=scripts/f1252d09.vendor.js></script><!-- Google Analytics: change UA-XXXXX-X to be your site's ID. --><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
@@ -41,4 +33,4 @@
             e=o.createElement(i);r=o.getElementsByTagName(i)[0];
             e.src='//www.google-analytics.com/analytics.js';
             r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','UA-7971756-1');ga('send','pageview');</script><script src=scripts/eb9ff981.plugins.js></script><script src=scripts/1ac35d0e.main.js></script>
+            ga('create','UA-7971756-1');ga('send','pageview');</script><script src=scripts/eb9ff981.plugins.js></script><script src=scripts/6fd1069d.main.js></script>
