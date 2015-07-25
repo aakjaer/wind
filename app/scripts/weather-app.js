@@ -266,9 +266,6 @@
                 // fill the time
                 this.DOMElement.find('.station-timestamp').html(this.timestamp);
 
-                // fill the time
-                this.DOMElement.find('.station-timestamp').html(this.timestamp);
-
                 // fill the temperature
                 //this.DOMElement.find('.station-temperature').html(this.temperature);
 

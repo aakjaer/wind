@@ -59,7 +59,8 @@ header[role="banner"] {
     .station {
         position: relative;
         @include opacity(0);
-        border-right: 15px solid transparent;
+        border-left: 15px solid lighten($body-bg, 5);
+        transition: border 0.35s;
     }
 
     /////////////////////
