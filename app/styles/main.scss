@@ -116,8 +116,11 @@ img {
     .station-wind-direction {
         position: relative;
         display: inline-block;
-        -webkit-transform-origin: center center;
+        width: 30px;
+        height: 30px;
+        transform-origin: center center;
         color: #fff;
+        background: lime;
         font-size: 1.5em;
     }
 

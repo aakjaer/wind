@@ -88,6 +88,7 @@
             this.stationId          = id;
             this.stationName        = name;
             this.windSpeed          = 0;
+            this.windCategory       = '';
             this.windAngle          = 0;
             this.temperature        = '';
             this.timestamp          = '';
@@ -195,6 +196,7 @@
                 this.windAngle = data.windAngle;
                 //this.temperature = data.temperature;
                 this.timestamp = data.timestamp;
+                this.windCategory = this.setWindCategory(this.windSpeed);
             },
 
             addZeroBefore : function(n) {
@@ -213,6 +215,42 @@
                  return timestamp;
             },
 
+            setWindCategory : function(speed) {
+                //var categories = ['white','turquoise','blue','green','dark-green','yellow','orange','dark-orange','red'];
+                var category;
+
+
+                if (speed < 2){
+                    category = 1;
+                } 
+                else if (speed >= 2 && speed < 4 ) {
+                  category = 2;
+                }
+                else if (speed >= 4 && speed < 6 ) {
+                    category = 3;
+                }
+                else if (speed >= 6 && speed < 8 ) {
+                    category = 4;
+                }
+                else if (speed >= 8 && speed < 10 ) {
+                    category = 5;
+                }
+                else if (speed >= 10 && speed < 12 ) {
+                    category = 6;
+                }
+                else if (speed >= 12 && speed < 14 ) {
+                    category = 7;
+                }
+                else if (speed >= 14 && speed < 16 ) {
+                    category = 8;
+                }
+                else if (speed >= 16 ) {
+                    category = 9;
+                }
+
+                return category;
+            },
+
             fillWeatherData : function() {
 
                 var windArrow           = this.DOMElement.find('.station-wind-direction'),
@@ -221,6 +259,9 @@
 
                 // fill in the wind speed
                 this.DOMElement.find('.station-wind-speed b').html(this.windSpeed);
+
+                // add wind category/class
+                this.DOMElement.addClass('wind-category-' + this.windCategory);
 
                 // fill the time
                 this.DOMElement.find('.station-timestamp').html(this.timestamp);

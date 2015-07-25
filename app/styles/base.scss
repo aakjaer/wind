@@ -1,14 +1,24 @@
 // import font awesome
 @import "variables";
 
-// import font awesome
-@import "../../bower_components/font-awesome/scss/font-awesome";
-
 // import font bootstrap
 @import "../../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap.scss";
 
 // import pull-to-refresh styles
 @import "pull-to-refresh";
+
+
+/*
+
+     <div class="col-sm-6">
+        <figure class="station-map">
+            <img class="map-layer map-speed-arrows" src="http://static.fcoo.dk/ifm-prod/dynamic_data/DMI_HIRLAM-S03_NSBALTIC_3NM/DMI_HIRLAM-S03_NSBALTIC_3NM_{{ mapID }}_Wind_Direction_black_{{ mapTimestamp }}.gif" alt="speed-map" />
+            <img class="map-layer map-outline" src="http://static.fcoo.dk/ifm-prod/static_data/{{ mapID }}_CoastLine.gif" alt="">
+            <img class="map-speed" src="http://static.fcoo.dk/ifm-prod/dynamic_data/DMI_HIRLAM-S03_NSBALTIC_3NM/DMI_HIRLAM-S03_NSBALTIC_3NM_{{ mapID }}_Wind_ms_WBGYR_10colors_Field_{{ mapTimestamp }}.gif" alt="speed-map" />
+        </figure>
+     </div>
+
+*/
 
 
 
@@ -49,6 +59,7 @@ header[role="banner"] {
     .station {
         position: relative;
         @include opacity(0);
+        border-right: 15px solid transparent;
     }
 
     /////////////////////
@@ -117,9 +128,10 @@ header[role="banner"] {
         display: inline-block;
         margin-left: 1.2em;
         line-height: $station-line-height;
+        color: #888;
 
         b {
-            color: $brand-primary;
+            color: white;
             font-size: 1.5em;
             font-weight: normal;
             line-height: $station-line-height;
@@ -138,7 +150,11 @@ header[role="banner"] {
     .station-wind-direction {
         position: relative;
         display: inline-block;
-        -webkit-transform-origin: center center;
+        width: 16px;
+        height: 16px;
+        background: url(/images/wind-arrow.svg) center center no-repeat;
+        transform-origin: center center;
+        background-size: 16px;
         color: #fff;
         font-size: 1.5em;
     }
@@ -163,6 +179,7 @@ header[role="banner"] {
 
     // the actual details
     .station-details {
+        margin: -15px 0 20px;
         font-size: 1em;
         color: $gray;
     }
@@ -177,6 +194,20 @@ header[role="banner"] {
         }
     }
 }
+
+
+// wind category colors
+.weather-stations .wind-category-1 { border-color: white; }
+.weather-stations .wind-category-2 { border-color: #00ebfd; }
+.weather-stations .wind-category-3 { border-color: #6592f9; }
+.weather-stations .wind-category-4 { border-color: #00e747; }
+.weather-stations .wind-category-5 { border-color: #009d2e; }
+.weather-stations .wind-category-6 { border-color: #fffc41; }
+.weather-stations .wind-category-7 { border-color: #ffd137; }
+.weather-stations .wind-category-8 { border-color: #ff7f28; }
+.weather-stations .wind-category-9 { border-color: #ff031c; }
+
+
 
 // wind map
 .map-layer {
